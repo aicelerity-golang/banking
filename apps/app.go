@@ -4,6 +4,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/aicelerity-golang/banking/domain"
+	"github.com/aicelerity-golang/banking/service"
 	"github.com/gorilla/mux"
 )
 
@@ -12,11 +14,11 @@ func Start() {
 	// mux := http.NewServeMux()
 	router := mux.NewRouter()
 
+	//wiring
+	ch := CustomerHandlers{service.NewCustomerService(domain.NewCustomerRepositoryStub())}
+
 	// define routes
-	router.HandleFunc("/greet", greet).Methods(http.MethodGet) // explicit http Get
-	router.HandleFunc("/customers", getAllCustomers).Methods(http.MethodGet)
-	router.HandleFunc("/customers", createCustomer).Methods(http.MethodPost)
-	router.HandleFunc("/customers/{customer_id:[0-9]*}", getCustomer).Methods(http.MethodGet) // customer id numeric
+	router.HandleFunc("/customers", ch.getAllCustomers).Methods(http.MethodGet)
 
 	// starting server
 	log.Fatal(http.ListenAndServe("localhost:8000", router))
