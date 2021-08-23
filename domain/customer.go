@@ -1,6 +1,6 @@
 package domain
 
-import "github.com/aicelerity-golang/banking/apps/errs"
+import "github.com/aicelerity-golang/banking/errs"
 
 type Customer struct {
 	Id          int    `json:"id" 		 xml:"id"`
