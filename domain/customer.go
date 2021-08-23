@@ -1,5 +1,7 @@
 package domain
 
+import "github.com/aicelerity-golang/banking/apps/errs"
+
 type Customer struct {
 	Id          int    `json:"id" 		 xml:"id"`
 	Name        string `json:"full_name" xml:"name"`
@@ -11,4 +13,5 @@ type Customer struct {
 
 type CustomerRepository interface {
 	FindAll() ([]Customer, error)
+	ById(string) (*Customer, *errs.AppError)
 }
