@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/aicelerity-golang/banking/apps/errs"
-	"github.com/aicelerity-golang/banking/apps/logger"
+	"github.com/aicelerity-golang/banking/errs"
+	"github.com/aicelerity-golang/banking/logger"
 	_ "github.com/go-sql-driver/mysql"
 )
 

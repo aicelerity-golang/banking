@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/aicelerity-golang/banking/apps"
-	"github.com/aicelerity-golang/banking/apps/logger"
+	"github.com/aicelerity-golang/banking/logger"
 )
 
 func main() {

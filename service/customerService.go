@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/aicelerity-golang/banking/apps/errs"
 	"github.com/aicelerity-golang/banking/domain"
+	"github.com/aicelerity-golang/banking/errs"
 )
 
 type CustomerService interface {
