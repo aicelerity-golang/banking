@@ -2,38 +2,33 @@ package apps
 
 import (
 	"encoding/json"
-	"encoding/xml"
 	"net/http"
 
 	"github.com/aicelerity-golang/banking/service"
 	"github.com/gorilla/mux"
 )
 
-// type Customer struct {
-// 	Name    string `json:"full_name" xml:"name"`
-// 	City    string `json:"city"      xml:"city"`
-// 	Zipcode string `json:"zip_code"  xml:"zipcode"`
-// }
-
 type CustomerHandlers struct {
 	service service.CustomerService
 }
 
 func (ch *CustomerHandlers) getAllCustomers(w http.ResponseWriter, r *http.Request) {
-	// customers := []Customer{
-	// 	{"Rajesh", "Bangalore", "68001"},
-	// 	{"Balaji", "Bangalore", "68001"},
-	// }
 
-	customers, _ := ch.service.GetAllCustomers()
+	status := r.URL.Query().Get("status")
+	customers, err := ch.service.GetAllCustomers(status)
 
-	if r.Header.Get("Content-Type") == "application/xml" {
-		w.Header().Add("Content-Type", "application/xml")
-		xml.NewEncoder(w).Encode(customers)
+	if err != nil {
+		writeResponse(w, err.Code, err.AsMessage())
 	} else {
-		w.Header().Add("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(customers)
+		writeResponse(w, http.StatusOK, customers)
 	}
+	// if r.Header.Get("Content-Type") == "application/xml" {
+	// 	w.Header().Add("Content-Type", "application/xml")
+	// 	xml.NewEncoder(w).Encode(customers)
+	// } else {
+	// 	w.Header().Add("Content-Type", "application/json")
+	// 	json.NewEncoder(w).Encode(customers)
+	// }
 
 }
 
