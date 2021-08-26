@@ -26,10 +26,8 @@ func (a Accounts) ToNewAccountResponseDto() dto.NewAccountResponse {
 }
 
 func (a Accounts) CanWithdraw(amount float64) bool {
-	s1 := fmt.Sprintf("%f", a.Amount)
-	logger.Info("Acc Bal Amount :" + s1)
-	s2 := fmt.Sprintf("%f", amount)
-	logger.Info("Transaction Amount :" + s2)
+	// s1 := fmt.Sprintf("%f", a.Amount)
+	// logger.Info("Acc Bal Amount :" + s1)
 	if a.Amount > amount {
 		return true
 	} else {

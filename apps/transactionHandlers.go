@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/aicelerity-golang/banking/dto"
-	"github.com/aicelerity-golang/banking/logger"
 	"github.com/aicelerity-golang/banking/service"
 	"github.com/gorilla/mux"
 )
@@ -26,8 +25,8 @@ func (th TransactionHandlers) MakeTransaction(w http.ResponseWriter, r *http.Req
 	} else {
 		request.AccountId = accountId
 		request.CustomerId = customerId
-		logger.Info("Account id :" + accountId)
-		logger.Info("Customer id :" + customerId)
+		// logger.Info("Account id :" + accountId)
+		// logger.Info("Customer id :" + customerId)
 		account, appError := th.service.MakeTransaction(request)
 		if appError != nil {
 			writeResponse(w, appError.Code, appError.Message)
